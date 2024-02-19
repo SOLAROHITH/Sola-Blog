@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 
 
 app.get("/createpost",(req,res)=>{
-    res.render("E:/Web Development Projects/CAPSTONE PROJECTS/Blog_Application/views/partials/blogcreate.ejs");
+    res.render("partials/blogcreate.ejs");
 });
 
 app.post('/post',(req,res)=>{
