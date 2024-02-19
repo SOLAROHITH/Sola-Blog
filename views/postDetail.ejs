@@ -1,0 +1,113 @@
+
+<!-- views/postDetail.ejs -->
+
+<!-- views/postDetail.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= post.title %></title>
+  <link rel="stylesheet" href="/CSS/stylespostDetail.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+
+  <div class="container">
+    <div class="container-fluid">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom fixed-top  ">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+        <span class="fs-4">Sola Blog</span>
+      </a>
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home</a></li>
+        <li class="nav-item"><a href="/createpost" class="nav-link">Create Post</a></li>
+        <li class="nav-item"><a href="/aboutme" class="nav-link">About Me</a></li>
+      </ul>
+    </header>
+    </div>
+  </div>
+
+  <div class="blog-content">
+    <div class="blog-title">
+      <h1 class="title"><%= post.title %></h1>
+    </div>
+    <div class="blog-text">
+      <p><%= post.content %></p>
+    </div>
+    
+  </div>
+
+  <div class="Options">
+ <div class="container mt-3">
+  <form id="deleteForm" action="/deletepost/<%= post.id %>" method="post">
+    <button type="button" onclick="confirmDelete()" class="btn">Delete this blog</button>
+  </form>
+</div>
+
+  
+  <div id="editForm" style="display: none;" class="row justify-content-center">
+    <form action="/editpost/<%= post.id %>" method="post">
+      <!-- Add a hidden input field to indicate the intended method -->
+      <input type="hidden" name="_method" value="put">
+      <label for="updatedTitle" class="form-label">New Title:</label>
+      <input type="text" name="updatedTitle" class="form-control mb-6s" rows="6" value="<%= post.title %>">
+      <label for="updatedContent" class="form-label">New Content:</label>
+      <textarea name="updatedContent"class="form-control mb-6" rows="6"><%= post.content %></textarea>
+      <div class="container mt-3">      <button type="submit" class="btn">Save Changes</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+  <div class="container mt-3">
+  <!-- Edit Button -->
+  <button type="button" onclick="toggleEdit()" class="btn">Edit this blog</button>
+  </div>
+
+</div>
+  <script>
+    function confirmDelete() {
+      if (confirm("Are you sure you want to delete this blog?")) {
+        // Use fetch API to send a DELETE request
+        fetch('/deletepost/<%= post.id %>', {
+          method: 'DELETE'
+        })
+        .then(response => {
+          if (response.ok) {
+            // Redirect to the home page after successful deletion
+            window.location.href = '/';
+          } else {
+            console.error('Error deleting the post');
+          }
+        });
+      }
+    }
+
+
+    function toggleEdit() {
+      const editForm = document.getElementById('editForm');
+      const postTitle = document.getElementById('postTitle');
+      const postContent = document.getElementById('postContent');
+
+      // Toggle display of the edit form and post content
+      if (editForm.style.display === 'none') {
+        editForm.style.display = 'block';
+        postTitle.style.display = 'none';
+        postContent.style.display = 'none';
+      } else {
+        editForm.style.display = 'none';
+        postTitle.style.display = 'block';
+        postContent.style.display = 'block';
+      }
+    }
+  </script>
+    
+    
+  
+</body>
+</html>
+
