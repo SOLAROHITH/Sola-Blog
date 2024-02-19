@@ -1,0 +1,43 @@
+/* Add this to your CSS file or inline style in the head of your HTML file */
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #343a40;
+    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('../assets/images/background3.jpg') center/cover no-repeat fixed;
+
+  }
+  
+  #blogs {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+#blogs  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+#blogs  li {
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+#blogs  li:hover {
+    transform: translateY(-5px);
+  }
+  
+#blogs  h1 a {
+    color: #007bff;
+    text-decoration: none;
+    display: block;
+    padding: 15px;
+  }
+  
+#blogs  h1 a:hover {
+    text-decoration: underline;
+  }
+  
