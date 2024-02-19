@@ -18,7 +18,7 @@ const posts = [];
 // Routes
 app.get('/', (req, res) => {
   console.log(posts); // Add this line for debugging
-  res.render('home.ejs', { posts });
+  res.render('../index.ejs', { posts });
 });
 
 
